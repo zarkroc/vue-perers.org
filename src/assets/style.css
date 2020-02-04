@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: white;
 }
 
 html {
@@ -12,6 +13,7 @@ body,
 html {
   width: 100%;
   height: 100%;
+  background-color: #172c31;
 }
 
 body {
@@ -40,17 +42,7 @@ footer {
 }
 
 header {
-  /* background-image: url('./img/bg.jpg'); */
-  background-color: cadetblue;
-  /* background-attachment: fixed; */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 250px 0;
-  -webkit-transform: skew(0deg, -10deg);
-  transform: skew(0deg, -10deg);
-  margin-top: -100px;
-  font-family: 'Syncopate', sans-serif;
+  background-color: #172c31;
 }
 
 .header-content {
@@ -62,6 +54,20 @@ header {
 }
 
 nav {
+  background-image: url('./bg.jpg');
+  background-color: #172c31;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 250px 0;
+  -webkit-transform: skew(0deg, -10deg);
+  transform: skew(0deg, -10deg);
+  margin-top: -100px;
+  font-family: 'Syncopate', sans-serif;
+}
+
+.nav-links {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -137,7 +143,7 @@ form {
   flex-flow: row wrap;
   align-items: center;
   flex-direction: column;
-  align-items: stretch;
+  margin-bottom: 2em;
 }
 
 label {
@@ -210,6 +216,13 @@ input[type='checkbox'] {
   color: rgb(59, 58, 58);
   font-size: 0.9em;
 }
+form .btn-container {
+  flex-direction: row;
+}
+form .btnPrimary {
+  align-self: center;
+  margin: 0.5em;
+}
 
 .btnPrimary {
   align-self: flex-end;
@@ -245,11 +258,11 @@ footer p {
   margin-bottom: 0;
 }
 
-.social {
+footer {
   align-self: center;
 }
 
-.social a {
+footer a {
   color: white;
   margin-right: 2em;
 }
@@ -259,18 +272,9 @@ footer p {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
 }
 
 #nav {
   padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
