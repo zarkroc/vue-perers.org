@@ -1,79 +1,88 @@
 <template>
-  <section class="about">
-    <h2>Login</h2>
-    <div class="about-container">
-      <section>
-        <form @submit.prevent="submitForm">
-          <label for="email"></label>
-          <input type="text" v-model="about.email" />
-          <label for="password"></label>
-          <input type="text" v-model="about.password" />
-          <button v-on:click="submitForm" class="btnPrimary" type="submit">
-            Save
+  <section v-if="token">
+    <button class="btnPrimary" type="button" v-on:click="removeToken">
+      Logout
+    </button>
+  </section>
+  <section v-else>
+    <div class="form-container" v-if="showRegister == false">
+      <form @submit.prevent="submitForm">
+        <label for="email">Email</label>
+        <input type="text" v-model="user.email" />
+        <label for="password">Password</label>
+        <input type="password" v-model="user.password" />
+        <div class="errors" v-if="errors.length">
+          <p>{{ errors }}</p>
+        </div>
+        <div class="btn-container">
+          <button class="btnPrimary" type="submit">
+            Login
           </button>
-          <div class="errors" v-if="errors.length">
-            <p>{{ errors }}</p>
-          </div>
-        </form>
-      </section>
+          <button
+            class="btnPrimary"
+            v-on:click="showRegister = !showRegister"
+            type="button"
+          >
+            Register
+          </button>
+        </div>
+      </form>
     </div>
-    <button v-on:click="showClickEditAbout" class="btnPrimary">Edit</button>
+    <div class="register" v-else-if="(showRegiser = true)">
+      <Register @clicked="showRegister = !showRegister" />
+    </div>
   </section>
 </template>
 
 <script>
 import axios from 'axios'
+import Register from '@/components/Register.vue'
+
 const apiKey = process.env.VUE_APP_API_KEY
 
 export default {
   data() {
     return {
-      data: {},
-      errors: []
+      user: {},
+      errors: [],
+      showRegister: false,
+      token: localStorage.token
     }
   },
-  props: {
-    about: {
-      type: Object
-    }
+  components: {
+    Register
   },
 
   methods: {
     showClickEditAbout: function(e) {},
+    removeToken: function() {
+      localStorage.removeItem('token')
+      this.$router.push(this.$route.query.redirect || '/')
+    },
     submitForm() {
       axios
-        .put(
-          `http://localhost:1337`,
+        .post(
+          `http://localhost:1337/login`,
           {
-            name: this.about.name,
-            description: this.about.description,
-            homeTown: this.about.location,
-            interest: this.about.interest
+            email: this.user.email,
+            password: this.user.password
           },
           {
             headers: {
               api_key: apiKey,
-              'Content-type': 'application/json',
-              'x-access-token': localStorage.token
+              'Content-type': 'application/json'
             }
           }
         )
         .then(response => {
           // JSON responses are automatically parsed.
-          console.log(response)
+          localStorage.token = response.data.token
+          this.$router.push(this.$route.query.redirect || '/')
         })
         .catch(e => {
-          console.log('====================================')
-          console.log(e.response.data)
-          console.log('====================================')
-          this.errors.push(e.response.data.response)
+          this.errors.push(e.response.data.errors.title)
         })
     }
   }
-
-  // Fetches posts when the component is created.
-  // created() {
-  //
-  // }
 }
 </script>

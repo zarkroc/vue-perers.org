@@ -1,13 +1,25 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/skills">Skills</router-link> |
-      <router-link to="/login">Login</router-link>
-    </div>
+    <header>
+      <Navigation />
+    </header>
     <router-view />
+    <Footer>
+      <a href="https://www.linkedin.com/in/tomasperers/">Linkedin</a>
+      <a href="https://github.com/zarkroc">GitHub</a>
+    </Footer>
   </div>
 </template>
+
+<script>
+import Navigation from '@/components/Navigation.vue'
+
+export default {
+  components: {
+    Navigation
+  }
+}
+</script>
 
 <style>
 @import url(assets/style.css);

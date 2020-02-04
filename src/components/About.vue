@@ -6,12 +6,15 @@
       <p>Location: {{ about.location }}</p>
       <p>Description: {{ about.description }}</p>
       <p>Interest: {{ about.interest }}</p>
-      <p>{{ about }}</p>
+      <div v-if="token">
+        <button v-on:click="showClickEditAbout" class="btnPrimary">
+          Edit
+        </button>
+      </div>
     </div>
     <div v-if="showEditAbout" class="about-container">
-      <EditAbout :about="about" />
+      <EditAbout :about="about" @clicked="showClickEditAbout" />
     </div>
-    <button v-on:click="showClickEditAbout" class="btnPrimary">Edit</button>
   </section>
   <section class="about" v-else>
     <h1>Error</h1>
@@ -32,7 +35,8 @@ export default {
       errors: [],
       showEditAbout: false,
       showAbout: true,
-      about: {}
+      about: {},
+      token: localStorage.token
     }
   },
   components: {

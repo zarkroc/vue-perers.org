@@ -12,7 +12,7 @@
           <input type="text" v-model="about.interest" />
           <label for="location"></label>
           <input type="text" v-model="about.location" />
-          <button v-on:click="submitForm" class="btnPrimary" type="submit">
+          <button class="btnPrimary" type="submit">
             Save
           </button>
           <div class="errors" v-if="errors.length">
@@ -21,7 +21,6 @@
         </form>
       </section>
     </div>
-    <button v-on:click="showClickEditAbout" class="btnPrimary">Edit</button>
   </section>
 </template>
 
@@ -65,11 +64,10 @@ export default {
         .then(response => {
           // JSON responses are automatically parsed.
           console.log(response)
+          this.$emit('clicked')
+          this.submitting = false
         })
         .catch(e => {
-          console.log('====================================')
-          console.log(e.response.data)
-          console.log('====================================')
           this.errors.push(e.response.data.response)
         })
     }

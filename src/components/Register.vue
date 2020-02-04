@@ -1,15 +1,15 @@
 <template>
-  <section class="skill">
-    <h2>Editera</h2>
-    <div class="skill-container">
-      <section v-if="skill">
+  <section class="login">
+    <h2>Register</h2>
+    <div class="login-container">
+      <section>
         <form @submit.prevent="submitForm">
-          <label for="name"></label>
-          <input type="text" v-model="skill.name" />
-          <label for="level"></label>
-          <input type="number" v-model="skill.level" />
+          <label for="email"></label>
+          <input type="text" v-model="user.email" />
+          <label for="password"></label>
+          <input type="password" v-model="user.password" />
           <button class="btnPrimary" type="submit">
-            Save
+            Register
           </button>
           <div class="errors" v-if="errors.length">
             <p>{{ errors }}</p>
@@ -27,37 +27,31 @@ const apiKey = process.env.VUE_APP_API_KEY
 export default {
   data() {
     return {
-      data: {},
+      user: {},
       errors: []
-    }
-  },
-  props: {
-    skill: {
-      type: Object
     }
   },
 
   methods: {
+    showClickEditAbout: function(e) {},
     submitForm() {
-      this.submitting = true
       axios
-        .put(
-          `http://localhost:1337/competence`,
+        .post(
+          `http://localhost:1337/register`,
           {
-            name: this.skill.name,
-            level: this.skill.level
+            email: this.user.email,
+            password: this.user.password
           },
           {
             headers: {
               api_key: apiKey,
-              'Content-type': 'application/json',
-              'x-access-token': localStorage.token
+              'Content-type': 'application/json'
             }
           }
         )
         .then(response => {
           // JSON responses are automatically parsed.
-          console.log(response)
+          localStorage.token = response.data.token
           this.$emit('clicked')
           this.submitting = false
         })
