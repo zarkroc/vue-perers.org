@@ -71,7 +71,6 @@ export default {
         )
         .then(response => {
           // JSON responses are automatically parsed.
-          console.log(response)
           this.$emit('clicked')
           this.submitting = false
         })
