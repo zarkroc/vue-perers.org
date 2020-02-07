@@ -1,10 +1,10 @@
 <template>
-  <section v-if="token">
+  <main v-if="token">
     <button class="btnPrimary" type="button" v-on:click="removeToken">
       Logout
     </button>
-  </section>
-  <section v-else>
+  </main>
+  <main v-else>
     <div class="form-container" v-if="showRegister == false">
       <form @submit.prevent="submitForm">
         <label for="email">Email</label>
@@ -31,7 +31,7 @@
     <div class="register" v-else-if="(showRegiser = true)">
       <Register @clicked="showRegister = !showRegister" />
     </div>
-  </section>
+  </main>
 </template>
 
 <script>

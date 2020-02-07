@@ -1,5 +1,5 @@
 <template>
-  <section class="login">
+  <main class="login">
     <h2>Register</h2>
     <div class="login-container">
       <section>
@@ -17,7 +17,7 @@
         </form>
       </section>
     </div>
-  </section>
+  </main>
 </template>
 
 <script>
