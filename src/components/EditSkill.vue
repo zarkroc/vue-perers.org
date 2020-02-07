@@ -40,9 +40,15 @@ export default {
   methods: {
     submitForm() {
       this.submitting = true
+      if (process.env.NODE_ENV == 'production') {
+        var apiHost = 'http://api.perers.org/competence'
+      } else {
+        var apiHost = 'http://localhost:1337/competence'
+      }
+
       axios
         .put(
-          `http://localhost:1337/competence`,
+          apiHost,
           {
             name: this.skill.name,
             level: this.skill.level

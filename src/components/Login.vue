@@ -60,9 +60,14 @@ export default {
       this.$router.push(this.$route.query.redirect || '/')
     },
     submitForm() {
+      if (process.env.NODE_ENV == 'production') {
+        var apiHost = 'http://api.perers.org/login'
+      } else {
+        var apiHost = 'http://localhost:1337/login'
+      }
       axios
         .post(
-          `http://localhost:1337/login`,
+          apiHost,
           {
             email: this.user.email,
             password: this.user.password

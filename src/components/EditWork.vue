@@ -46,9 +46,14 @@ export default {
   methods: {
     submitForm() {
       this.submitting = true
+      if (process.env.NODE_ENV == 'production') {
+        var apiHost = 'http://api.perers.org/workHistory'
+      } else {
+        var apiHost = 'http://localhost:1337/workHistory'
+      }
       axios
         .put(
-          `http://localhost:1337/workhistory`,
+          apiHost,
           {
             company: this.work.company,
             role: this.work.role,

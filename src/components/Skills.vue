@@ -52,8 +52,14 @@ export default {
 
   // Fetches posts when the component is created.
   created() {
+    if (process.env.NODE_ENV == 'production') {
+      var apiHost = 'http://api.perers.org/competence'
+    } else {
+      var apiHost = 'http://localhost:1337/competence'
+    }
+
     axios
-      .get(`http://localhost:1337/competence`, {
+      .get(apiHost, {
         headers: { api_key: apiKey }
       })
       .then(response => {

@@ -35,9 +35,14 @@ export default {
   methods: {
     showClickEditAbout: function(e) {},
     submitForm() {
+      if (process.env.NODE_ENV == 'production') {
+        var apiHost = 'http://api.perers.org/register'
+      } else {
+        var apiHost = 'http://localhost:1337/register'
+      }
       axios
         .post(
-          `http://localhost:1337/register`,
+          apiHost,
           {
             email: this.user.email,
             password: this.user.password
