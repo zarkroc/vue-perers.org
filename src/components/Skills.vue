@@ -1,7 +1,7 @@
 <template>
   <main class="skills" v-if="skills.title">
     <h1>{{ skills.title }}</h1>
-    <section class="skills-container" v-if="showSkills">
+    <section class="container" v-if="showSkills">
       <div v-for="(skill, _id) in skills.skills" v-bind:key="_id">
         <div v-if="showEditAbout && token" class="skills-container">
           <EditSkill :skill="skill" @clicked="showClickEdit" />

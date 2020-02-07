@@ -1,9 +1,9 @@
 <template>
   <main class="workplaces" v-if="workPlaces.title">
     <h1>{{ workPlaces.title }}</h1>
-    <section class="workplaces-container" v-if="showWork">
+    <section class="container" v-if="showWork">
       <div v-for="(work, _id) in workPlaces.workPlaces" v-bind:key="_id">
-        <div v-if="showEditWork && token" class="work-container">
+        <div v-if="showEditWork && token" class="work">
           <EditWork :work="work" @clicked="showClickEdit" />
         </div>
         <div v-else class="work">

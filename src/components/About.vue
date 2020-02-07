@@ -1,7 +1,7 @@
 <template>
   <main class="about" v-if="data.about">
     <h1>{{ data.title }}</h1>
-    <section class="about-container" v-if="showAbout">
+    <section class="container" v-if="showAbout">
       <p>Name: {{ about.name }}</p>
       <p>Location: {{ about.location }}</p>
       <p>Description: {{ about.description }}</p>
@@ -12,7 +12,7 @@
         </button>
       </div>
     </section>
-    <div v-if="showEditAbout && token" class="about-container">
+    <div v-if="showEditAbout && token" class="about">
       <EditAbout :about="about" @clicked="showClickEditAbout" />
     </div>
   </main>
