@@ -12,7 +12,7 @@
         </button>
       </div>
     </section>
-    <div v-if="showEditAbout" class="about-container">
+    <div v-if="showEditAbout && token" class="about-container">
       <EditAbout :about="about" @clicked="showClickEditAbout" />
     </div>
   </main>
