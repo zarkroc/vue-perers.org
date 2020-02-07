@@ -2,6 +2,7 @@
   <nav class="navbar" :class="{ 'hidden-navbar': !showNavbar }">
     <router-link to="/">Home</router-link>
     <router-link to="/skills">Skills</router-link>
+    <router-link to="/workHistory">Work places</router-link>
     <router-link to="/login">Login</router-link>
   </nav>
 </template>
