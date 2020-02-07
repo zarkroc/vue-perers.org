@@ -155,7 +155,7 @@ textarea {
   margin: 5px 10px 5px 0;
   padding: 0.5em;
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid #d57df7;
   font-size: 0.9em;
 }
 
@@ -176,7 +176,7 @@ textarea {
   resize: none;
   transition: all 0.3s;
   border-radius: 20px;
-  border: 2px solid rgba(182, 206, 49, 0.77);
+  border: 2px solid #d57df7;
 }
 
 textarea {
@@ -206,9 +206,9 @@ input[type='checkbox'] {
   width: 11em;
   padding: 0.5em;
   box-sizing: border-box;
-  background: rgba(182, 206, 49, 0.7686274509803922);
+  background: #f5f8fd;
   border-radius: 20px;
-  border: 2px solid rgba(182, 206, 49, 0.7686274509803922);
+  border: 2px solid #d57df7;
   color: rgb(59, 58, 58);
   font-size: 0.9em;
 }
@@ -237,6 +237,20 @@ form .btnPrimary {
 
 .error {
   color: #e40000;
+}
+
+/* Container styles */
+.container {
+  margin: 0 auto;
+  width: 100%;
+}
+.skill,
+.work {
+  border-radius: 1em;
+  border: 0.1em solid #d57df7;
+  padding: 1em;
+  margin: 1em auto;
+  width: 70%;
 }
 
 /* Style for footer.  */
