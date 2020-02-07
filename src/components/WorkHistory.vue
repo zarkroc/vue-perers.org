@@ -1,0 +1,70 @@
+<template>
+  <main class="workplaces" v-if="workPlaces.title">
+    <h1>{{ workPlaces.title }}</h1>
+    <section class="workplaces-container" v-if="showWork">
+      <div v-for="(work, _id) in workPlaces.workPlaces" v-bind:key="_id">
+        <div v-if="showEditWork && token" class="work-container">
+          <EditWork :work="work" @clicked="showClickEdit" />
+          <button v-on:click="showClickEdit" class="btnPrimary">
+            Edit
+          </button>
+        </div>
+        <div v-else class="work">
+          <p>Company: {{ work.company }}</p>
+          <p>Role: {{ work.role }}</p>
+          <p>Description: {{ work.description }}</p>
+          <p>Start date: {{ work.start }}</p>
+          <p>Stop date: {{ work.stop }}</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <main class="workPlaces" v-else>
+    <h1>Error</h1>
+    <p>No reponse from API</p>
+  </main>
+</template>
+
+<script>
+import axios from 'axios'
+import EditWork from '@/components/EditWork.vue'
+
+const apiKey = process.env.VUE_APP_API_KEY
+
+export default {
+  data() {
+    return {
+      errors: [],
+      showEditWork: false,
+      showWork: true,
+      workPlaces: {},
+      token: localStorage.token
+    }
+  },
+  components: {
+    EditWork
+  },
+
+  methods: {
+    showClickEdit: function(e) {
+      this.showEditWork = !this.showEditWork
+      this.showWork = !this.showWork
+    }
+  },
+
+  // Fetches posts when the component is created.
+  created() {
+    axios
+      .get(`http://localhost:1337/competence`, {
+        headers: { api_key: apiKey }
+      })
+      .then(response => {
+        // JSON responses are automatically parsed.
+        this.workPlaces = response.data.data
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+  }
+}
+</script>
