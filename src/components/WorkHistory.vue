@@ -5,9 +5,6 @@
       <div v-for="(work, _id) in workPlaces.workPlaces" v-bind:key="_id">
         <div v-if="showEditWork && token" class="work-container">
           <EditWork :work="work" @clicked="showClickEdit" />
-          <button v-on:click="showClickEdit" class="btnPrimary">
-            Edit
-          </button>
         </div>
         <div v-else class="work">
           <p>Company: {{ work.company }}</p>
@@ -15,6 +12,11 @@
           <p>Description: {{ work.description }}</p>
           <p>Start date: {{ work.start }}</p>
           <p>Stop date: {{ work.stop }}</p>
+          <div v-if="token">
+            <button v-on:click="showClickEdit" class="btnPrimary">
+              Edit
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -55,7 +57,7 @@ export default {
   // Fetches posts when the component is created.
   created() {
     axios
-      .get(`http://localhost:1337/competence`, {
+      .get(`http://localhost:1337/workHistory`, {
         headers: { api_key: apiKey }
       })
       .then(response => {
