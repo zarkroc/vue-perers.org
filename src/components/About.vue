@@ -19,6 +19,7 @@
   <main class="about" v-else>
     <h1>Error</h1>
     <p>No reponse from API</p>
+    <p>{{ errors }}</p>
   </main>
 </template>
 
@@ -53,7 +54,7 @@ export default {
   // Fetches posts when the component is created.
   created() {
     if (process.env.NODE_ENV == 'production') {
-      var apiHost = 'http://api.perers.org/'
+      var apiHost = 'https://api.perers.org/'
     } else {
       var apiHost = 'http://localhost:1337'
     }
@@ -67,7 +68,7 @@ export default {
         this.data = response.data.data
       })
       .catch(e => {
-        this.errors.push(e)
+        this.errors.push(e.response)
       })
   }
 }

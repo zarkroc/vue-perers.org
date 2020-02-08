@@ -47,7 +47,7 @@ export default {
     submitForm() {
       this.submitting = true
       if (process.env.NODE_ENV == 'production') {
-        var apiHost = 'http://api.perers.org/workHistory'
+        var apiHost = 'https://api.perers.org/workHistory'
       } else {
         var apiHost = 'http://localhost:1337/workHistory'
       }
@@ -71,7 +71,6 @@ export default {
         )
         .then(response => {
           // JSON responses are automatically parsed.
-          console.log(response)
           this.$emit('clicked')
           this.submitting = false
         })

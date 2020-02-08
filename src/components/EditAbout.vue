@@ -45,7 +45,7 @@ export default {
     showClickEditAbout: function(e) {},
     submitForm() {
       if (process.env.NODE_ENV == 'production') {
-        var apiHost = 'http://api.perers.org/'
+        var apiHost = 'https://api.perers.org/'
       } else {
         var apiHost = 'http://localhost:1337'
       }
