@@ -19,6 +19,7 @@
   <main class="about" v-else>
     <h1>Error</h1>
     <p>No reponse from API</p>
+    <p>{{ errors }}</p>
   </main>
 </template>
 
@@ -67,7 +68,7 @@ export default {
         this.data = response.data.data
       })
       .catch(e => {
-        this.errors.push(e)
+        this.errors.push(e.response)
       })
   }
 }
