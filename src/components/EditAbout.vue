@@ -56,7 +56,8 @@ export default {
             name: this.about.name,
             description: this.about.description,
             homeTown: this.about.location,
-            interest: this.about.interest
+            interest: this.about.interest,
+            id: this.about._id
           },
           {
             headers: {

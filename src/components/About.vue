@@ -55,12 +55,17 @@ export default {
   created() {
     if (process.env.NODE_ENV == 'production') {
       var apiHost = 'https://api.perers.org/'
+      var name = 'Tomas Perers'
     } else {
       var apiHost = 'http://localhost:1337'
+      var name = 'test'
     }
     axios
       .get(apiHost, {
-        headers: { api_key: apiKey }
+        headers: { api_key: apiKey },
+        params: {
+          name: name
+        }
       })
       .then(response => {
         // JSON responses are automatically parsed.
@@ -68,7 +73,7 @@ export default {
         this.data = response.data.data
       })
       .catch(e => {
-        this.errors.push(e.response)
+        this.errors.push(e.response.data.response)
       })
   }
 }
