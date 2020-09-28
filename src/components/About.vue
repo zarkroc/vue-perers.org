@@ -27,7 +27,6 @@
 import axios from 'axios'
 import EditAbout from '@/components/EditAbout.vue'
 
-const apiKey = process.env.VUE_APP_API_KEY
 
 export default {
   data() {
@@ -37,7 +36,8 @@ export default {
       showEditAbout: false,
       showAbout: true,
       about: {},
-      token: localStorage.token
+      token: localStorage.token,
+      apiKey: process.env.VUE_APP_API_KEY
     }
   },
   components: {
@@ -62,7 +62,7 @@ export default {
     }
     axios
       .get(apiHost, {
-        headers: { api_key: apiKey },
+        headers: { api_key: this.apiKey },
         params: {
           name: name
         }
