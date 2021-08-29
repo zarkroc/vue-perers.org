@@ -1,22 +1,20 @@
 <template>
-  <main class="workplaces" v-if="workPlaces.title">
+  <main class="workplaces" v-if="workPlaces">
     <h1>{{ workPlaces.title }}</h1>
-    <section class="container" v-if="showWork">
-      <div v-for="(work, _id) in workPlaces.workPlaces" v-bind:key="_id">
-        <div v-if="showEditWork && token" class="work">
-          <EditWork :work="work" @clicked="showClickEdit" />
-        </div>
-        <div v-else class="work">
+    <section class="container">
+      <div v-for="(work, _id) in workPlaces" v-bind:key="_id">
+        <div v-if="showWork" class="work">
           <p>Company: {{ work.company }}</p>
           <p>Role: {{ work.role }}</p>
           <p>Description: {{ work.description }}</p>
           <p>Start date: {{ work.start }}</p>
           <p>Stop date: {{ work.stop }}</p>
           <div v-if="token">
-            <button v-on:click="showClickEdit" class="btnPrimary">
-              Edit
-            </button>
+            <button v-on:click="showClickEdit" class="btnPrimary">Edit</button>
           </div>
+        </div>
+        <div v-if="showEditWork">
+          <EditWork :work="work" @updated="showClickEdit" />
         </div>
       </div>
     </section>
@@ -40,18 +38,18 @@ export default {
       showEditWork: false,
       showWork: true,
       workPlaces: {},
-      token: localStorage.token
+      token: localStorage.token,
     }
   },
   components: {
-    EditWork
+    EditWork,
   },
 
   methods: {
-    showClickEdit: function(e) {
+    showClickEdit: function (e) {
       this.showEditWork = !this.showEditWork
       this.showWork = !this.showWork
-    }
+    },
   },
 
   // Fetches posts when the component is created.
@@ -63,15 +61,15 @@ export default {
     }
     axios
       .get(apiHost, {
-        headers: { api_key: apiKey }
+        headers: { api_key: apiKey },
       })
-      .then(response => {
+      .then((response) => {
         // JSON responses are automatically parsed.
-        this.workPlaces = response.data.data
+        this.workPlaces = response.data
       })
-      .catch(e => {
+      .catch((e) => {
         this.errors.push(e)
       })
-  }
+  },
 }
 </script>

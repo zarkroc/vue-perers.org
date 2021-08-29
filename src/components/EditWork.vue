@@ -1,7 +1,7 @@
 <template>
   <section class="work">
     <h2>Editera</h2>
-    <div class="work-container">
+    <div class="work-container" v-if="work">
       <section v-if="work">
         <form @submit.prevent="submitForm">
           <label for="company"></label>
@@ -14,9 +14,7 @@
           <input type="text" v-model="work.start" />
           <label for="stop"></label>
           <input type="text" v-model="work.stop" />
-          <button class="btnPrimary" type="submit">
-            Save
-          </button>
+          <button class="btnPrimary" type="submit">Save</button>
           <div class="errors" v-if="errors.length">
             <p>{{ errors }}</p>
           </div>
@@ -34,13 +32,13 @@ export default {
   data() {
     return {
       data: {},
-      errors: []
+      errors: [],
     }
   },
   props: {
     work: {
-      type: Object
-    }
+      type: Object,
+    },
   },
 
   methods: {
@@ -55,34 +53,30 @@ export default {
         .put(
           apiHost,
           {
+            id: this.work._id,
             company: this.work.company,
             role: this.work.role,
             description: this.work.description,
             start: this.work.start,
-            stop: this.work.stop
+            stop: this.work.stop,
           },
           {
             headers: {
               api_key: apiKey,
               'Content-type': 'application/json',
-              'x-access-token': localStorage.token
-            }
+              'x-access-token': localStorage.token,
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           // JSON responses are automatically parsed.
-          this.$emit('clicked')
+          this.$emit('updated')
           this.submitting = false
         })
-        .catch(e => {
+        .catch((e) => {
           this.errors.push(e.response.data.errors.title)
         })
-    }
-  }
-
-  // Fetches posts when the component is created.
-  // created() {
-  //
-  // }
+    },
+  },
 }
 </script>

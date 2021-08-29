@@ -1,15 +1,13 @@
 <template>
-  <main class="about" v-if="data.about">
-    <h1>{{ data.title }}</h1>
+  <main class="about" v-if="about">
+    <h1>{{ about.name }}</h1>
     <section class="container" v-if="showAbout">
       <p>Name: {{ about.name }}</p>
       <p>Location: {{ about.location }}</p>
       <p>Description: {{ about.description }}</p>
       <p>Interest: {{ about.interest }}</p>
       <div v-if="token">
-        <button v-on:click="showClickEditAbout" class="btnPrimary">
-          Edit
-        </button>
+        <button v-on:click="showClickEditAbout" class="btnPrimary">Edit</button>
       </div>
     </section>
     <div v-if="showEditAbout && token" class="about">
@@ -27,28 +25,26 @@
 import axios from 'axios'
 import EditAbout from '@/components/EditAbout.vue'
 
-
 export default {
   data() {
     return {
-      data: {},
       errors: [],
       showEditAbout: false,
       showAbout: true,
       about: {},
       token: localStorage.token,
-      apiKey: process.env.VUE_APP_API_KEY
+      apiKey: process.env.VUE_APP_API_KEY,
     }
   },
   components: {
-    EditAbout
+    EditAbout,
   },
 
   methods: {
-    showClickEditAbout: function(e) {
+    showClickEditAbout: function (e) {
       this.showEditAbout = !this.showEditAbout
       this.showAbout = !this.showAbout
-    }
+    },
   },
 
   // Fetches posts when the component is created.
@@ -58,23 +54,23 @@ export default {
       var name = 'Tomas Perers'
     } else {
       var apiHost = 'http://localhost:1337'
-      var name = 'test'
+      var name = 'Tomas Perers'
     }
     axios
       .get(apiHost, {
         headers: { api_key: this.apiKey },
         params: {
-          name: name
-        }
+          name: name,
+        },
       })
-      .then(response => {
+      .then((response) => {
         // JSON responses are automatically parsed.
-        this.about = response.data.data.about
-        this.data = response.data.data
+        this.about = response.data
+        localStorage.setItem('userId', response.data._id)
       })
-      .catch(e => {
-        this.errors.push(e.response.data.response)
+      .catch((e) => {
+        this.errors.push(e.response.response)
       })
-  }
+  },
 }
 </script>

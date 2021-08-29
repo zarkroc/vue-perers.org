@@ -1,17 +1,15 @@
 <template>
-  <main class="skills" v-if="skills.title">
-    <h1>{{ skills.title }}</h1>
+  <main class="skills" v-if="skills">
+    <h1>Competence</h1>
     <section class="container" v-if="showSkills">
-      <div v-for="(skill, _id) in skills.skills" v-bind:key="_id">
+      <div v-for="(skill, _id) in skills" v-bind:key="_id">
         <div v-if="showEditAbout && token" class="skills-container">
           <EditSkill :skill="skill" @clicked="showClickEdit" />
         </div>
         <div v-else class="skill">
           <p>Competence: {{ skill.name }} - level: {{ skill.level }}</p>
           <div v-if="token">
-            <button v-on:click="showClickEdit" class="btnPrimary">
-              Edit
-            </button>
+            <button v-on:click="showClickEdit" class="btnPrimary">Edit</button>
           </div>
         </div>
       </div>
@@ -36,18 +34,18 @@ export default {
       showEditAbout: false,
       showSkills: true,
       skills: {},
-      token: localStorage.token
+      token: localStorage.token,
     }
   },
   components: {
-    EditSkill
+    EditSkill,
   },
 
   methods: {
-    showClickEdit: function(e) {
+    showClickEdit: function (e) {
       this.showEditAbout = !this.showEditAbout
       this.showSkills = !this.showSkills
-    }
+    },
   },
 
   // Fetches posts when the component is created.
@@ -60,15 +58,18 @@ export default {
 
     axios
       .get(apiHost, {
-        headers: { api_key: apiKey }
+        headers: { api_key: apiKey },
+        params: {
+          id: localStorage.getItem('userId'),
+        },
       })
-      .then(response => {
+      .then((response) => {
         // JSON responses are automatically parsed.
-        this.skills = response.data.data
+        this.skills = response.data
       })
-      .catch(e => {
+      .catch((e) => {
         this.errors.push(e)
       })
-  }
+  },
 }
 </script>
