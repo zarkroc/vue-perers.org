@@ -1,7 +1,5 @@
 <template>
-  <main>
-    <WorkHistory />
-  </main>
+  <WorkHistory />
 </template>
 
 <script>

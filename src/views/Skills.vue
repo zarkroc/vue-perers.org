@@ -1,7 +1,5 @@
 <template>
-  <main>
-    <Skills msg="Welcome to Your Vue.js App" />
-  </main>
+  <Skills msg="Welcome to Your Vue.js App" />
 </template>
 
 <script>
