@@ -38,18 +38,18 @@ export default {
       showEditWork: false,
       showWork: true,
       workPlaces: {},
-      token: localStorage.token,
+      token: localStorage.token
     }
   },
   components: {
-    EditWork,
+    EditWork
   },
 
   methods: {
-    showClickEdit: function (e) {
+    showClickEdit: function(e) {
       this.showEditWork = !this.showEditWork
       this.showWork = !this.showWork
-    },
+    }
   },
 
   // Fetches posts when the component is created.
@@ -61,15 +61,15 @@ export default {
     }
     axios
       .get(apiHost, {
-        headers: { api_key: apiKey },
+        headers: { api_key: apiKey }
       })
-      .then((response) => {
+      .then(response => {
         // JSON responses are automatically parsed.
         this.workPlaces = response.data
       })
-      .catch((e) => {
+      .catch(e => {
         this.errors.push(e)
       })
-  },
+  }
 }
 </script>

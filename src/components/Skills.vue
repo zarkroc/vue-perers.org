@@ -34,18 +34,18 @@ export default {
       showEditAbout: false,
       showSkills: true,
       skills: {},
-      token: localStorage.token,
+      token: localStorage.token
     }
   },
   components: {
-    EditSkill,
+    EditSkill
   },
 
   methods: {
-    showClickEdit: function (e) {
+    showClickEdit: function(e) {
       this.showEditAbout = !this.showEditAbout
       this.showSkills = !this.showSkills
-    },
+    }
   },
 
   // Fetches posts when the component is created.
@@ -60,16 +60,16 @@ export default {
       .get(apiHost, {
         headers: { api_key: apiKey },
         params: {
-          id: localStorage.getItem('userId'),
-        },
+          id: localStorage.getItem('userId')
+        }
       })
-      .then((response) => {
+      .then(response => {
         // JSON responses are automatically parsed.
         this.skills = response.data
       })
-      .catch((e) => {
+      .catch(e => {
         this.errors.push(e)
       })
-  },
+  }
 }
 </script>

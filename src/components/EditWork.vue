@@ -32,13 +32,13 @@ export default {
   data() {
     return {
       data: {},
-      errors: [],
+      errors: []
     }
   },
   props: {
     work: {
-      type: Object,
-    },
+      type: Object
+    }
   },
 
   methods: {
@@ -58,25 +58,25 @@ export default {
             role: this.work.role,
             description: this.work.description,
             start: this.work.start,
-            stop: this.work.stop,
+            stop: this.work.stop
           },
           {
             headers: {
               api_key: apiKey,
               'Content-type': 'application/json',
-              'x-access-token': localStorage.token,
-            },
+              'x-access-token': localStorage.token
+            }
           }
         )
-        .then((response) => {
+        .then(response => {
           // JSON responses are automatically parsed.
           this.$emit('updated')
           this.submitting = false
         })
-        .catch((e) => {
+        .catch(e => {
           this.errors.push(e.response.data.errors.title)
         })
-    },
-  },
+    }
+  }
 }
 </script>

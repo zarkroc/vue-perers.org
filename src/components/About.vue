@@ -33,18 +33,18 @@ export default {
       showAbout: true,
       about: {},
       token: localStorage.token,
-      apiKey: process.env.VUE_APP_API_KEY,
+      apiKey: process.env.VUE_APP_API_KEY
     }
   },
   components: {
-    EditAbout,
+    EditAbout
   },
 
   methods: {
-    showClickEditAbout: function (e) {
+    showClickEditAbout: function(e) {
       this.showEditAbout = !this.showEditAbout
       this.showAbout = !this.showAbout
-    },
+    }
   },
 
   // Fetches posts when the component is created.
@@ -60,17 +60,17 @@ export default {
       .get(apiHost, {
         headers: { api_key: this.apiKey },
         params: {
-          name: name,
-        },
+          name: name
+        }
       })
-      .then((response) => {
+      .then(response => {
         // JSON responses are automatically parsed.
         this.about = response.data
         localStorage.setItem('userId', response.data._id)
       })
-      .catch((e) => {
+      .catch(e => {
         this.errors.push(e.response.response)
       })
-  },
+  }
 }
 </script>
