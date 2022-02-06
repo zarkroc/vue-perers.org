@@ -10,29 +10,29 @@
     "deploy": "scp -r dist/* ers@perers.org:~/www/"
   },
   "dependencies": {
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "axios": "^0.23.0",
-    "core-js": "^3.4.4",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "axios": "^0.25.0",
+    "core-js": "^3.21.0",
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-prettier": "^3.1.2",
-    "node-sass": "^6.0.1",
-    "sass-loader": "^12.2.0",
-    "vue": "^2.6.10",
-    "vue-router": "^3.1.3"
+    "node-sass": "^7.0.1",
+    "sass-loader": "^12.4.0",
+    "vue": "^2.6.14",
+    "vue-router": "^3.5.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.1.0",
-    "@vue/cli-plugin-eslint": "^4.1.0",
-    "@vue/cli-plugin-router": "^4.1.0",
-    "@vue/cli-plugin-unit-mocha": "^4.1.0",
-    "@vue/cli-service": "^4.1.0",
+    "@vue/cli-plugin-babel": "^4.5.15",
+    "@vue/cli-plugin-eslint": "^4.5.15",
+    "@vue/cli-plugin-router": "^4.5.15",
+    "@vue/cli-plugin-unit-mocha": "^4.5.15",
+    "@vue/cli-service": "^4.5.15",
     "@vue/eslint-config-standard": "^4.0.0",
-    "@vue/test-utils": "1.0.0-beta.29",
+    "@vue/test-utils": "1.3.0",
     "babel-eslint": "^10.0.3",
-    "chai": "^4.1.2",
+    "chai": "^4.3.6",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
     "root": true,
