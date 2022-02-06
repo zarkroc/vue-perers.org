@@ -8,9 +8,7 @@
           <input type="text" v-model="skill.name" />
           <label for="level"></label>
           <input type="number" v-model="skill.level" />
-          <button class="btnPrimary" type="submit">
-            Save
-          </button>
+          <button class="btnPrimary" type="submit">Save</button>
           <div class="errors" v-if="errors.length">
             <p>{{ errors }}</p>
           </div>
@@ -28,13 +26,13 @@ export default {
   data() {
     return {
       data: {},
-      errors: []
+      errors: [],
     }
   },
   props: {
     skill: {
-      type: Object
-    }
+      type: Object,
+    },
   },
 
   methods: {
@@ -51,26 +49,26 @@ export default {
           apiHost,
           {
             name: this.skill.name,
-            level: this.skill.level
+            level: this.skill.level,
           },
           {
             headers: {
               api_key: apiKey,
               'Content-type': 'application/json',
-              'x-access-token': localStorage.token
-            }
+              'x-access-token': localStorage.token,
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           // JSON responses are automatically parsed.
           this.$emit('clicked')
           this.submitting = false
         })
-        .catch(e => {
+        .catch((e) => {
           this.errors.push(e.response.data.errors.title)
         })
-    }
-  }
+    },
+  },
 
   // Fetches posts when the component is created.
   // created() {

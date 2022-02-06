@@ -9,7 +9,7 @@ import WorkHistory from '@/components/WorkHistory.vue'
 export default {
   name: 'workHistory',
   components: {
-    WorkHistory
-  }
+    WorkHistory,
+  },
 }
 </script>

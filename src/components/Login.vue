@@ -15,9 +15,7 @@
           <p>{{ errors }}</p>
         </div>
         <div class="btn-container">
-          <button class="btnPrimary" type="submit">
-            Login
-          </button>
+          <button class="btnPrimary" type="submit">Login</button>
           <button
             class="btnPrimary"
             v-on:click="showRegister = !showRegister"
@@ -46,16 +44,16 @@ export default {
       user: {},
       errors: [],
       showRegister: false,
-      token: localStorage.token
+      token: localStorage.token,
     }
   },
   components: {
-    Register
+    Register,
   },
 
   methods: {
-    showClickEditAbout: function(e) {},
-    removeToken: function() {
+    showClickEditAbout: function (e) {},
+    removeToken: function () {
       localStorage.removeItem('token')
       this.$router.push(this.$route.query.redirect || '/')
     },
@@ -70,24 +68,24 @@ export default {
           apiHost,
           {
             email: this.user.email,
-            password: this.user.password
+            password: this.user.password,
           },
           {
             headers: {
               api_key: apiKey,
-              'Content-type': 'application/json'
-            }
+              'Content-type': 'application/json',
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           // JSON responses are automatically parsed.
           localStorage.token = response.data.token
           this.$router.push(this.$route.query.redirect || '/')
         })
-        .catch(e => {
+        .catch((e) => {
           this.errors.push(e.response.data.errors.title)
         })
-    }
-  }
+    },
+  },
 }
 </script>

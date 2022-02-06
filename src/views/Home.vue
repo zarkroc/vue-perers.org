@@ -9,7 +9,7 @@ import About from '@/components/About.vue'
 export default {
   name: 'home',
   components: {
-    About
-  }
+    About,
+  },
 }
 </script>

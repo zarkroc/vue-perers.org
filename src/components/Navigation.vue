@@ -13,7 +13,7 @@ export default {
     return {
       showNavbar: true,
       lastScrollPosition: 0,
-      scrollValue: 0
+      scrollValue: 0,
     }
   },
 
@@ -40,7 +40,7 @@ export default {
       }
       this.showNavbar = window.pageYOffset < this.lastScrollPosition
       this.lastScrollPosition = window.pageYOffset
-    }
-  }
+    },
+  },
 }
 </script>

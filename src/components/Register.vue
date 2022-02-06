@@ -8,9 +8,7 @@
           <input type="text" v-model="user.email" />
           <label for="password"></label>
           <input type="password" v-model="user.password" />
-          <button class="btnPrimary" type="submit">
-            Register
-          </button>
+          <button class="btnPrimary" type="submit">Register</button>
           <div class="errors" v-if="errors.length">
             <p>{{ errors }}</p>
           </div>
@@ -28,12 +26,12 @@ export default {
   data() {
     return {
       user: {},
-      errors: []
+      errors: [],
     }
   },
 
   methods: {
-    showClickEditAbout: function(e) {},
+    showClickEditAbout: function (e) {},
     submitForm() {
       if (process.env.NODE_ENV == 'production') {
         var apiHost = 'https://api.perers.org/register'
@@ -45,26 +43,26 @@ export default {
           apiHost,
           {
             email: this.user.email,
-            password: this.user.password
+            password: this.user.password,
           },
           {
             headers: {
               api_key: apiKey,
-              'Content-type': 'application/json'
-            }
+              'Content-type': 'application/json',
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           // JSON responses are automatically parsed.
           localStorage.token = response.data.token
           this.$emit('clicked')
           this.submitting = false
         })
-        .catch(e => {
+        .catch((e) => {
           this.errors.push(e.response.data.errors.title)
         })
-    }
-  }
+    },
+  },
 
   // Fetches posts when the component is created.
   // created() {

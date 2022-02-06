@@ -12,9 +12,7 @@
           <input type="text" v-model="about.interest" />
           <label for="location"></label>
           <input type="text" v-model="about.location" />
-          <button class="btnPrimary" type="submit">
-            Save
-          </button>
+          <button class="btnPrimary" type="submit">Save</button>
           <div class="errors" v-if="errors.length">
             <p>{{ errors }}</p>
           </div>
@@ -32,17 +30,17 @@ export default {
   data() {
     return {
       data: {},
-      errors: []
+      errors: [],
     }
   },
   props: {
     about: {
-      type: Object
-    }
+      type: Object,
+    },
   },
 
   methods: {
-    showClickEditAbout: function(e) {},
+    showClickEditAbout: function (e) {},
     submitForm() {
       if (process.env.NODE_ENV == 'production') {
         var apiHost = 'https://api.perers.org/'
@@ -57,26 +55,26 @@ export default {
             description: this.about.description,
             homeTown: this.about.location,
             interest: this.about.interest,
-            id: this.about._id
+            id: this.about._id,
           },
           {
             headers: {
               api_key: apiKey,
               'Content-type': 'application/json',
-              'x-access-token': localStorage.token
-            }
+              'x-access-token': localStorage.token,
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           // JSON responses are automatically parsed.
           this.$emit('clicked')
           this.submitting = false
         })
-        .catch(e => {
+        .catch((e) => {
           this.errors.push(e.response.data.response)
         })
-    }
-  }
+    },
+  },
 
   // Fetches posts when the component is created.
   // created() {
